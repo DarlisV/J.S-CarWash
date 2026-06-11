@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS.Jesus Car Wash — Santo Domingo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     INTRO SCREEN — Estilo Pluto TV
+════════════════════════════════════════════ -->
+<div id="intro-screen" aria-hidden="true">
+
+  <!-- Fondo de partículas -->
+  <div id="intro-bg"></div>
+
+  <!-- Línea de scan -->
+  <div class="intro-scan"></div>
+
+  <!-- Carro fantasmal de fondo -->
+  <div id="intro-car-wrap">
+    <svg width="800" height="285" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg">
+
+      <defs>
+        <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#8ec0ff"/>
+          <stop offset="45%" stop-color="#2563eb"/>
+          <stop offset="100%" stop-color="#0b1c47"/>
+        </linearGradient>
+        <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stop-color="#eef8ff"/>
+          <stop offset="100%" stop-color="#4f7fc4"/>
+        </linearGradient>
+        <radialGradient id="rimGrad" cx="35%" cy="35%" r="70%">
+          <stop offset="0%"  stop-color="#eef2f7"/>
+          <stop offset="55%" stop-color="#94a3b8"/>
+          <stop offset="100%" stop-color="#33415a"/>
+        </radialGradient>
+        <linearGradient id="skirtGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#102452"/>
+          <stop offset="100%" stop-color="#060f2c"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Sombra de piso -->
+      <ellipse cx="450" cy="296" rx="380" ry="18" fill="rgba(37,99,235,0.35)"/>
+
+      <!-- ═══ Carrocería — silueta deportiva ═══ -->
+      <path d="M48,255 C40,255 36,242 44,228 L58,210
+               C75,180 120,170 175,168
+               C200,130 245,95 300,84
+               C370,72 460,70 530,75
+               C575,78 605,90 625,112
+               L655,145
+               C705,150 765,155 805,166
+               C840,176 862,190 868,210
+               C872,225 865,242 848,250
+               C842,253 836,255 826,255 Z"
+            fill="url(#bodyGrad)"/>
+
+      <!-- Faldón inferior (side skirt) -->
+      <path d="M58,232 C150,222 400,218 450,218 C620,218 760,222 850,232 L850,255 L58,255 Z"
+            fill="url(#skirtGrad)"/>
+
+      <!-- ═══ Ventanería — CERRADA, una sola pieza ═══ -->
+      <path d="M185,168 C205,135 250,103 305,93
+               C375,82 460,80 525,85
+               C565,88 590,98 605,115
+               L630,148 L612,156
+               C585,135 555,123 520,120
+               C460,115 380,117 315,128
+               C265,137 230,153 215,178 Z"
+            fill="url(#glassGrad)" opacity="0.9"/>
+
+      <!-- Reflejo diagonal en el cristal -->
+      <path d="M258,112 L302,99 L324,121 L278,136 Z" fill="rgba(255,255,255,0.4)"/>
+
+      <!-- Pilares (cierran la ventana al techo) -->
+      <path d="M172,170 L188,168 L203,150 L188,146 Z" fill="#15336f"/>
+      <path d="M606,114 L633,150 L645,144 L618,107 Z" fill="#15336f"/>
+
+      <!-- Línea de carácter (crease) -->
+      <path d="M70,205 C200,195 500,193 845,205" stroke="rgba(255,255,255,0.08)" stroke-width="2" fill="none"/>
+
+      <!-- Manija de puerta -->
+      <rect x="415" y="172" width="28" height="6" rx="3" fill="#0c1d4a" opacity="0.55"/>
+
+      <!-- Espejo lateral -->
+      <path d="M632,104 C646,97 660,102 656,113 C652,121 637,119 631,112 Z" fill="#173a7a"/>
+
+      <!-- Antena -->
+      <line x1="520" y1="78" x2="542" y2="48" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+
+      <!-- Faro delantero LED -->
+      <path d="M828,192 L862,200 C869,202 869,212 861,214 L826,210 Z" fill="#fef9c3" opacity="0.92"/>
+      <path d="M828,206 L859,210" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+
+      <!-- Calavera trasera -->
+      <path d="M46,200 C50,197 58,197 62,201 L62,225 C58,229 50,229 46,225 Z" fill="#f87171" opacity="0.88"/>
+
+      <!-- Brillo superior (chrome highlight) -->
+      <path d="M178,168 C230,128 310,95 400,86 C480,79 560,82 615,108"
+            stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+      <!-- ═══ Sombras de las pasarruedas ═══ -->
+      <ellipse cx="200" cy="240" rx="66" ry="42" fill="rgba(4,8,22,0.45)"/>
+      <ellipse cx="745" cy="240" rx="66" ry="42" fill="rgba(4,8,22,0.45)"/>
+
+      <!-- ═══ Rueda trasera ═══ -->
+      <g transform="translate(200,255)">
+        <circle r="50" fill="#05070d"/>
+        <circle r="50" fill="none" stroke="#1c2433" stroke-width="3"/>
+        <circle r="33" fill="url(#rimGrad)"/>
+        <g stroke="#475569" stroke-width="5" stroke-linecap="round">
+          <line x1="0" y1="0" x2="0" y2="-30" transform="rotate(0)"/>
+          <line x1="0" y1="0" x2="0" y2="-30" transform="rotate(72)"/>
+          <line x1="0" y1="0" x2="0" y2="-30" transform="rotate(144)"/>
+          <line x1="0" y1="0" x2="0" y2="-30" transform="rotate(216)"/>
+          <line x1="0" y1="0" x2="0" y2="-30" transform="rotate(288)"/>
+        </g>
+        <circle r="13" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+        <circle r="6"  fill="#94a3b8"/>
+      </g>
+
+      <!-- ═══ Rueda delantera ═══ -->
+      <g transform="translate(745,255)">
+        <circle r="50" fill="#05070d"/>
+        <circle r="50" fill="none" stroke="#1c2433" stroke-width="3"/>
+        <circle r="33" fill="url(#rimGrad)"/>
+        <g stroke="#475569" stroke-width="5" stroke-linecap="round">
+          <line x1="0" y1="0" x2="0" y2="-30" transform="rotate(0)"/>
+          <line x1="0" y1="0" x2="0" y2="-30" transform="rotate(72)"/>
+          <line x1="0" y1="0" x2="0" y2="-30" transform="rotate(144)"/>
+          <line x1="0" y1="0" x2="0" y2="-30" transform="rotate(216)"/>
+          <line x1="0" y1="0" x2="0" y2="-30" transform="rotate(288)"/>
+        </g>
+        <circle r="13" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+        <circle r="6"  fill="#94a3b8"/>
+      </g>
+
+      <!-- ═══ Chorros de agua sobre el carro ═══ -->
+      <line x1="200" y1="-30" x2="200" y2="130" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" opacity="0.5" stroke-dasharray="12 8">
+        <animate attributeName="stroke-dashoffset" from="0" to="-40" dur="0.8s" repeatCount="indefinite"/>
+      </line>
+      <line x1="335" y1="-30" x2="335" y2="115" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" opacity="0.5" stroke-dasharray="12 8">
+        <animate attributeName="stroke-dashoffset" from="0" to="-40" dur="0.8s" begin="0.15s" repeatCount="indefinite"/>
+      </line>
+      <line x1="465" y1="-30" x2="465" y2="105" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" opacity="0.5" stroke-dasharray="12 8">
+        <animate attributeName="stroke-dashoffset" from="0" to="-40" dur="0.8s" begin="0.3s" repeatCount="indefinite"/>
+      </line>
+      <line x1="595" y1="-30" x2="595" y2="115" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" opacity="0.5" stroke-dasharray="12 8">
+        <animate attributeName="stroke-dashoffset" from="0" to="-40" dur="0.8s" begin="0.45s" repeatCount="indefinite"/>
+      </line>
+      <line x1="725" y1="-30" x2="725" y2="135" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" opacity="0.5" stroke-dasharray="12 8">
+        <animate attributeName="stroke-dashoffset" from="0" to="-40" dur="0.8s" begin="0.6s" repeatCount="indefinite"/>
+      </line>
+
+      <!-- ═══ Burbujas de espuma flotando ═══ -->
+      <circle cx="140" cy="258" r="6"  fill="#ffffff" opacity="0.25">
+        <animateTransform attributeName="transform" type="translate" values="0,0; -8,-230" dur="6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.35;0" dur="6s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="260" cy="250" r="9"  fill="#ffffff" opacity="0.2">
+        <animateTransform attributeName="transform" type="translate" values="0,0; 14,-260" dur="7.5s" begin="1s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.3;0" dur="7.5s" begin="1s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="400" cy="245" r="5"  fill="#ffffff" opacity="0.22">
+        <animateTransform attributeName="transform" type="translate" values="0,0; -10,-250" dur="6.8s" begin="2.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.3;0" dur="6.8s" begin="2.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="530" cy="252" r="8"  fill="#ffffff" opacity="0.2">
+        <animateTransform attributeName="transform" type="translate" values="0,0; 10,-255" dur="7s" begin="0.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.32;0" dur="7s" begin="0.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="660" cy="248" r="6"  fill="#ffffff" opacity="0.25">
+        <animateTransform attributeName="transform" type="translate" values="0,0; -12,-245" dur="6.4s" begin="1.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.35;0" dur="6.4s" begin="1.6s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="780" cy="255" r="7"  fill="#ffffff" opacity="0.2">
+        <animateTransform attributeName="transform" type="translate" values="0,0; 8,-265" dur="7.2s" begin="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.3;0" dur="7.2s" begin="2.8s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+
+  <!-- Logo principal -->
+  <div id="intro-logo">
+
+    <!-- SVG del logo JS -->
+    <svg width="auto" height="clamp(100px, 22vw, 200px)"
+         viewBox="0 0 520 180"
+         xmlns="http://www.w3.org/2000/svg"
+         style="height:clamp(100px,22vw,200px); width:auto;">
+
+      <!-- Punto decorativo que aparece detrás -->
+      <circle class="intro-dot" cx="500" cy="30"/>
+
+      <!-- Letras JS dibujadas con stroke -->
+      <text class="intro-js"
+            x="10" y="160"
+            font-family="'Bebas Neue', sans-serif"
+            font-size="180"
+            letter-spacing="8">JS</text>
+
+      <!-- Gota de agua animada encima del punto -->
+      <g opacity="0" style="animation: sub-appear 0.5s ease 1.2s forwards;">
+        <ellipse cx="500" cy="18" rx="7" ry="10" fill="#60a5fa" opacity="0.8"/>
+        <ellipse cx="500" cy="12" rx="3" ry="4" fill="#93c5fd" opacity="0.6"/>
+      </g>
+
+    </svg>
+
+    <!-- Subtítulo -->
+    <div id="intro-sub">Jesús Car Wash</div>
+    <div id="intro-tag">Lavado Profesional &nbsp;·&nbsp; Santo Domingo, RD</div>
+
+  </div>
+
+  <!-- Barra de carga -->
+  <div id="intro-loader">
+    <div id="intro-loader-track">
+      <div id="intro-loader-fill"></div>
+    </div>
+    <div id="intro-loader-label">Cargando experiencia</div>
+  </div>
+
+</div><!-- /intro-screen -->
+
+
+<!-- ════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-logo">JS.<span>Jesus</span></div>
+  <div class="nav-center">
+    <a href="#servicios">Servicios</a>
+    <a href="#antes-despues">Resultados</a>
+    <a href="#ubicacion">Ubicación</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <div class="nav-socials">
+    <a href="https://wa.me/18091234567" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+    <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════════
+     SCROLL EXPERIENCE
+════════════════════════════════════════════ -->
+<div id="scroll-experience">
+  <div id="stage">
+    <canvas id="car-canvas"></canvas>
+    <div id="scene-text">
+      <p id="scene-label"></p>
+      <h2 id="scene-title"></h2>
+      <p id="scene-desc"></p>
+    </div>
+    <div id="progress-bar"><div id="progress-fill"></div></div>
+    <div id="scroll-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <rect x="9" y="2" width="6" height="11" rx="3"/>
+        <path d="M12 15v4M8 21h8"/>
+        <line x1="12" y1="6" x2="12" y2="9"/>
+      </svg>
+      <span>Scrollea para ver el proceso</span>
+    </div>
+  </div>
+  <div class="scroll-spacer"></div>
+  <div class="scroll-spacer"></div>
+  <div class="scroll-spacer"></div>
+  <div class="scroll-spacer"></div>
+  <div class="scroll-spacer"></div>
+  <div class="scroll-spacer"></div>
+  <div class="scroll-spacer"></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     SERVICIOS
+════════════════════════════════════════════ -->
+<section id="servicios">
+  <div class="container">
+    <div class="sec-head">
+      <p class="eyebrow">Lo que ofrecemos</p>
+      <h2>Nuestros Servicios</h2>
+      <p class="sub">Puedes seleccionar el servicio de tu preferencia.</p>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Sedán -->
+      <div class="svc-card" data-delay="0">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="11" width="20" height="7" rx="2"/>
+            <path d="M5 11L7.5 5h9L19 11"/>
+            <!-- Ventanas CERRADAS sin apertura -->
+            <path d="M6 11L8 6h3.5v5z" fill="currentColor" opacity="0.15"/>
+            <path d="M11.5 6H15L17 11h-5.5z" fill="currentColor" opacity="0.15"/>
+            <circle cx="7" cy="18" r="1.5" fill="currentColor"/>
+            <circle cx="17" cy="18" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="svc-body">
+          <span class="svc-tag">Sedán</span>
+          <h3>Lavado de Motor</h3>
+          <p>Limpieza profunda del motor a presión. Tu motor queda impecable.</p>
+        </div>
+        <div class="svc-foot"><strong>RD$500</strong><span>~25 min</span></div>
+      </div>
+
+      <!-- SUV Mediana -->
+      <div class="svc-card" data-delay="60">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="10" width="20" height="8" rx="2"/>
+            <path d="M4 10L7 4h10l3 6"/>
+            <!-- Ventanas cerradas -->
+            <path d="M5 10L7.5 5h3v5z" fill="currentColor" opacity="0.15"/>
+            <path d="M10.5 5H16L18 10h-7.5z" fill="currentColor" opacity="0.15"/>
+            <circle cx="7" cy="18" r="1.5" fill="currentColor"/>
+            <circle cx="17" cy="18" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="svc-body">
+          <span class="svc-tag">SUV Mediana</span>
+          <h3>Lavado de Motor</h3>
+          <p>Limpieza profunda del motor a presión. Tu motor queda impecable.</p>
+        </div>
+        <div class="svc-foot"><strong>RD$600</strong><span>~25 min</span></div>
+      </div>
+
+      <!-- Camionetas -->
+      <div class="svc-card" data-delay="120">
+        <div class="svc-icon">
+          <svg viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Cabina cerrada -->
+            <rect x="1" y="8" width="16" height="10" rx="2"/>
+            <path d="M3 8L6 2h8l2 6"/>
+            <!-- Ventanas cabina cerradas -->
+            <path d="M4 8L6.5 3h3v5z" fill="currentColor" opacity="0.18"/>
+            <path d="M9.5 3H13L15 8H9.5z" fill="currentColor" opacity="0.18"/>
+            <!-- Cama trasera -->
+            <rect x="17" y="10" width="8" height="8" rx="1"/>
+            <line x1="17" y1="10" x2="17" y2="18" stroke="currentColor" stroke-width="2"/>
+            <!-- Ruedas cerradas -->
+            <circle cx="6" cy="18" r="2" fill="currentColor" opacity="0.3"/>
+            <circle cx="6" cy="18" r="1" fill="currentColor"/>
+            <circle cx="20" cy="18" r="2" fill="currentColor" opacity="0.3"/>
+            <circle cx="20" cy="18" r="1" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="svc-body">
+          <span class="svc-tag">Camionetas</span>
+          <h3>Lavado de Motor</h3>
+          <p>Limpieza profunda del motor a presión. Tu motor queda impecable.</p>
+        </div>
+        <div class="svc-foot"><strong>RD$700</strong><span>~25 min</span></div>
+      </div>
+
+      <!-- SUV Grande -->
+      <div class="svc-card" data-delay="180">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="9" width="22" height="9" rx="2"/>
+            <path d="M3 9L6 3h12l3 6"/>
+            <!-- 3 ventanas cerradas -->
+            <path d="M4 9L6 4h3.5v5z" fill="currentColor" opacity="0.18"/>
+            <path d="M9.5 4h5l1.5 5h-6.5z" fill="currentColor" opacity="0.18"/>
+            <path d="M16 4h3l1 5h-4z" fill="currentColor" opacity="0.18"/>
+            <circle cx="7" cy="18" r="2" fill="currentColor" opacity="0.25"/>
+            <circle cx="7" cy="18" r="1" fill="currentColor"/>
+            <circle cx="17" cy="18" r="2" fill="currentColor" opacity="0.25"/>
+            <circle cx="17" cy="18" r="1" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="svc-body">
+          <span class="svc-tag">SUV Grande</span>
+          <h3>Lavado de Motor</h3>
+          <p>Limpieza profunda del motor a presión. Tu motor queda impecable.</p>
+        </div>
+        <div class="svc-foot"><strong>RD$1,000</strong><span>~30 min</span></div>
+      </div>
+
+      <!-- Remolques / Camiones — FEATURED -->
+      <div class="svc-card featured" data-delay="240">
+        <div class="svc-icon">
+          <svg viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Cabina cerrada -->
+            <rect x="1" y="6" width="10" height="10" rx="2"/>
+            <!-- Ventana cabina cerrada -->
+            <path d="M2 6L3 2h6l1 4z" fill="currentColor" opacity="0.25"/>
+            <!-- Trailer cerrado -->
+            <rect x="11" y="4" width="16" height="12" rx="2"/>
+            <!-- Líneas del trailer -->
+            <line x1="14" y1="4" x2="14" y2="16" stroke="currentColor" stroke-width="1"/>
+            <line x1="18" y1="4" x2="18" y2="16" stroke="currentColor" stroke-width="1"/>
+            <line x1="22" y1="4" x2="22" y2="16" stroke="currentColor" stroke-width="1"/>
+            <circle cx="5" cy="17" r="2" fill="currentColor" opacity="0.3"/>
+            <circle cx="5" cy="17" r="1" fill="currentColor"/>
+            <circle cx="20" cy="17" r="2" fill="currentColor" opacity="0.3"/>
+            <circle cx="20" cy="17" r="1" fill="currentColor"/>
+            <circle cx="25" cy="17" r="2" fill="currentColor" opacity="0.3"/>
+            <circle cx="25" cy="17" r="1" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="svc-body">
+          <span class="svc-tag">Remolques / Camiones Pesados</span>
+          <h3>Lavado de Motor</h3>
+          <p>Servicio especializado para vehículos de gran tonelaje. Limpieza a presión de alta potencia.</p>
+        </div>
+        <div class="svc-foot"><strong>RD$1,000</strong><span>~1 hr</span></div>
+      </div>
+
+      <!-- Restauración luces — carros -->
+      <div class="svc-card" data-delay="300">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2"  x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="22"/>
+            <line x1="4.22"  y1="4.22"  x2="5.64"  y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="2"  y1="12" x2="4"  y2="12"/>
+            <line x1="20" y1="12" x2="22" y2="12"/>
+            <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
+            <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+          </svg>
+        </div>
+        <div class="svc-body">
+          <span class="svc-tag">Luces de carros</span>
+          <h3>Restauración de Luces</h3>
+          <p>Si vienen amarillas, te las dejamos como nuevas. Recuperá la visibilidad y el look original.</p>
+        </div>
+        <div class="svc-foot"><strong>RD$300</strong><span>~25 min</span></div>
+      </div>
+
+      <!-- Restauración luces — motores y pasolas -->
+      <div class="svc-card" data-delay="360">
+        <div class="svc-icon">
+          <svg viewBox="0 0 28 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Moto/pasola cerrada -->
+            <!-- Chasis -->
+            <path d="M8 12 L12 6 L18 6 L22 12"/>
+            <path d="M8 12 L6 16"/>
+            <path d="M22 12 L22 16"/>
+            <!-- Manillar -->
+            <path d="M18 6 L20 4 L22 4"/>
+            <!-- Asiento cerrado -->
+            <path d="M12 6 L18 6 L18 9 L12 9 Z" fill="currentColor" opacity="0.2"/>
+            <!-- Rueda delantera cerrada -->
+            <circle cx="22" cy="17" r="4"/>
+            <circle cx="22" cy="17" r="2" fill="currentColor" opacity="0.2"/>
+            <circle cx="22" cy="17" r="1" fill="currentColor"/>
+            <!-- Rueda trasera cerrada -->
+            <circle cx="6" cy="17" r="4"/>
+            <circle cx="6" cy="17" r="2" fill="currentColor" opacity="0.2"/>
+            <circle cx="6" cy="17" r="1" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="svc-body">
+          <span class="svc-tag">Luces de motores y pasolas</span>
+          <h3>Restauración de Luces</h3>
+          <p>El mismo servicio premium de restauración, adaptado para motores y pasolas.</p>
+        </div>
+        <div class="svc-foot"><strong>RD$150</strong><span>~25 min</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     ANTES & DESPUÉS
+════════════════════════════════════════════ -->
+<section id="antes-despues">
+  <div class="container">
+    <div class="sec-head">
+      <p class="eyebrow">Resultados reales</p>
+      <h2>Antes &amp; Después</h2>
+      <p class="sub">El trabajo habla por sí solo.</p>
+    </div>
+    <div class="ba-grid">
+
+      <!-- Sedán -->
+      <div class="ba-card">
+        <div class="ba-visual">
+          <div class="ba-panel ba-before">
+            <svg viewBox="0 0 280 130" xmlns="http://www.w3.org/2000/svg">
+              <!-- Sombra -->
+              <ellipse cx="140" cy="122" rx="115" ry="8" fill="rgba(0,0,0,0.25)"/>
+              <!-- Carrocería sucia -->
+              <rect x="22" y="58" width="236" height="56" rx="12" fill="#3a5580"/>
+              <!-- Techo cerrado -->
+              <path d="M65 58 Q80 18 160 16 Q210 18 215 58 Z" fill="#2d4468"/>
+              <!-- Ventana trasera — CERRADA -->
+              <path d="M70 58 Q72 26 105 20 L130 20 L130 58 Z" fill="#6ba3d4" opacity="0.55"/>
+              <!-- Montante central -->
+              <rect x="128" y="20" width="8" height="38" rx="2" fill="#2d4468"/>
+              <!-- Ventana delantera — CERRADA -->
+              <path d="M136 58 L136 18 L195 20 L195 58 Z" fill="#7ab8e0" opacity="0.5"/>
+              <!-- Pilar A -->
+              <path d="M65 58 Q68 30 72 22 L68 58 Z" fill="#26395a"/>
+              <!-- Pilar C -->
+              <path d="M196 22 L205 58 L194 58 Z" fill="#26395a"/>
+              <!-- Faro delantero -->
+              <rect x="224" y="66" width="34" height="16" rx="5" fill="#fef3c7" opacity="0.85"/>
+              <!-- Faro trasero -->
+              <rect x="22" y="66" width="28" height="16" rx="5" fill="#fca5a5" opacity="0.8"/>
+              <!-- Mugre encima -->
+              <rect x="22" y="58" width="236" height="56" rx="12" fill="rgba(60,35,5,0.42)"/>
+              <!-- Manchas -->
+              <ellipse cx="110" cy="80" rx="22" ry="7" fill="rgba(40,20,0,0.45)"/>
+              <ellipse cx="170" cy="75" rx="14" ry="5" fill="rgba(40,20,0,0.4)"/>
+              <ellipse cx="60"  cy="85" rx="10" ry="4" fill="rgba(40,20,0,0.38)"/>
+              <!-- Ruedas cerradas -->
+              <circle cx="82"  cy="118" r="18" fill="#111"/>
+              <circle cx="82"  cy="118" r="11" fill="#1e293b"/>
+              <circle cx="82"  cy="118" r="4"  fill="#334155"/>
+              <line x1="82" y1="100" x2="82" y2="136" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+              <line x1="64" y1="118" x2="100" y2="118" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="198" cy="118" r="18" fill="#111"/>
+              <circle cx="198" cy="118" r="11" fill="#1e293b"/>
+              <circle cx="198" cy="118" r="4"  fill="#334155"/>
+              <line x1="198" y1="100" x2="198" y2="136" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+              <line x1="180" y1="118" x2="216" y2="118" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <img class="ba-photo" alt="Foto antes">
+            <label class="ba-upload">
+              <svg viewBox="0 0 24 24"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16"/><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+              Subir foto
+              <input type="file" accept="image/*" class="ba-file-input">
+            </label>
+            <button type="button" class="ba-remove" aria-label="Quitar foto">
+              <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <span class="ba-pill">Antes</span>
+          </div>
+          <div class="ba-panel ba-after">
+            <svg viewBox="0 0 280 130" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="140" cy="122" rx="115" ry="8" fill="rgba(37,99,235,0.2)"/>
+              <rect x="22" y="58" width="236" height="56" rx="12" fill="#2563eb"/>
+              <path d="M65 58 Q80 18 160 16 Q210 18 215 58 Z" fill="#1d4ed8"/>
+              <!-- Ventana trasera CERRADA limpia -->
+              <path d="M70 58 Q72 26 105 20 L130 20 L130 58 Z" fill="#bae6fd" opacity="0.6"/>
+              <rect x="128" y="20" width="8" height="38" rx="2" fill="#1d4ed8"/>
+              <path d="M136 58 L136 18 L195 20 L195 58 Z" fill="#e0f2fe" opacity="0.55"/>
+              <path d="M65 58 Q68 30 72 22 L68 58 Z" fill="#1a3a8a"/>
+              <path d="M196 22 L205 58 L194 58 Z" fill="#1a3a8a"/>
+              <rect x="224" y="66" width="34" height="16" rx="5" fill="#fef9c3" opacity="0.95"/>
+              <rect x="22"  y="66" width="28" height="16" rx="5" fill="#fca5a5" opacity="0.9"/>
+              <!-- Brillo capó -->
+              <ellipse cx="135" cy="72" rx="80" ry="10" fill="rgba(255,255,255,0.18)"/>
+              <line x1="88" y1="46" x2="108" y2="34" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Ruedas cerradas limpias -->
+              <circle cx="82"  cy="118" r="18" fill="#0f172a"/>
+              <circle cx="82"  cy="118" r="11" fill="#1e3a5f"/>
+              <circle cx="82"  cy="118" r="4"  fill="#3b82f6"/>
+              <line x1="82" y1="100" x2="82" y2="136" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+              <line x1="64" y1="118" x2="100" y2="118" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="198" cy="118" r="18" fill="#0f172a"/>
+              <circle cx="198" cy="118" r="11" fill="#1e3a5f"/>
+              <circle cx="198" cy="118" r="4"  fill="#3b82f6"/>
+              <line x1="198" y1="100" x2="198" y2="136" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+              <line x1="180" y1="118" x2="216" y2="118" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <img class="ba-photo" alt="Foto después">
+            <label class="ba-upload">
+              <svg viewBox="0 0 24 24"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16"/><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+              Subir foto
+              <input type="file" accept="image/*" class="ba-file-input">
+            </label>
+            <button type="button" class="ba-remove" aria-label="Quitar foto">
+              <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <span class="ba-pill after-pill">Después</span>
+          </div>
+          <div class="ba-divider">
+            <div class="ba-div-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M8 12h8M5 9l-3 3 3 3M19 9l3 3-3 3"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="ba-info">
+          <div><strong>Sedán familiar</strong><span>Lavado de motor + luces</span></div>
+          <em>Completado</em>
+        </div>
+      </div>
+
+      <!-- SUV -->
+      <div class="ba-card">
+        <div class="ba-visual">
+          <div class="ba-panel ba-before">
+            <svg viewBox="0 0 300 135" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="150" cy="128" rx="125" ry="8" fill="rgba(0,0,0,0.25)"/>
+              <!-- Carrocería SUV sucia — más alta y cuadrada -->
+              <rect x="18" y="52" width="264" height="64" rx="10" fill="#3d2e1a"/>
+              <!-- Techo cerrado SUV -->
+              <path d="M52 52 Q62 12 168 10 Q230 12 248 52 Z" fill="#2e2010"/>
+              <!-- Ventana trasera CERRADA -->
+              <path d="M58 52 Q60 20 98 14 L130 14 L130 52 Z" fill="#8a9aaa" opacity="0.4"/>
+              <!-- Montante -->
+              <rect x="128" y="14" width="10" height="38" rx="2" fill="#2e2010"/>
+              <!-- Ventana delantera CERRADA -->
+              <path d="M138 52 L138 12 L210 14 L210 52 Z" fill="#a0b0c0" opacity="0.38"/>
+              <!-- Pilar A -->
+              <path d="M53 52 Q57 22 62 14 L56 52 Z" fill="#221608"/>
+              <!-- Pilar C -->
+              <path d="M211 16 L222 52 L209 52 Z" fill="#221608"/>
+              <!-- Faros -->
+              <rect x="254" y="60" width="28" height="18" rx="5" fill="#fef3c7" opacity="0.7"/>
+              <rect x="18"  y="60" width="24" height="18" rx="5" fill="#fca5a5" opacity="0.7"/>
+              <!-- Mugre -->
+              <rect x="18" y="52" width="264" height="64" rx="10" fill="rgba(50,28,5,0.5)"/>
+              <ellipse cx="130" cy="80" rx="30" ry="9" fill="rgba(35,15,0,0.5)"/>
+              <!-- Ruedas cerradas -->
+              <circle cx="88"  cy="122" r="20" fill="#111"/>
+              <circle cx="88"  cy="122" r="13" fill="#1e293b"/>
+              <circle cx="88"  cy="122" r="5"  fill="#334155"/>
+              <line x1="88" y1="102" x2="88" y2="142" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+              <line x1="68" y1="122" x2="108" y2="122" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="218" cy="122" r="20" fill="#111"/>
+              <circle cx="218" cy="122" r="13" fill="#1e293b"/>
+              <circle cx="218" cy="122" r="5"  fill="#334155"/>
+              <line x1="218" y1="102" x2="218" y2="142" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+              <line x1="198" y1="122" x2="238" y2="122" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <img class="ba-photo" alt="Foto antes">
+            <label class="ba-upload">
+              <svg viewBox="0 0 24 24"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16"/><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+              Subir foto
+              <input type="file" accept="image/*" class="ba-file-input">
+            </label>
+            <button type="button" class="ba-remove" aria-label="Quitar foto">
+              <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <span class="ba-pill">Antes</span>
+          </div>
+          <div class="ba-panel ba-after">
+            <svg viewBox="0 0 300 135" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="150" cy="128" rx="125" ry="8" fill="rgba(37,99,235,0.2)"/>
+              <rect x="18" y="52" width="264" height="64" rx="10" fill="#111827"/>
+              <path d="M52 52 Q62 12 168 10 Q230 12 248 52 Z" fill="#0a0f1a"/>
+              <!-- Ventana trasera CERRADA limpia -->
+              <path d="M58 52 Q60 20 98 14 L130 14 L130 52 Z" fill="#60a5fa" opacity="0.3"/>
+              <rect x="128" y="14" width="10" height="38" rx="2" fill="#0a0f1a"/>
+              <path d="M138 52 L138 12 L210 14 L210 52 Z" fill="#93c5fd" opacity="0.28"/>
+              <path d="M53 52 Q57 22 62 14 L56 52 Z" fill="#060a14"/>
+              <path d="M211 16 L222 52 L209 52 Z" fill="#060a14"/>
+              <rect x="254" y="60" width="28" height="18" rx="5" fill="#fef9c3" opacity="0.9"/>
+              <rect x="18"  y="60" width="24" height="18" rx="5" fill="#fca5a5" opacity="0.85"/>
+              <ellipse cx="150" cy="68" rx="100" ry="12" fill="rgba(255,255,255,0.1)"/>
+              <line x1="100" y1="42" x2="122" y2="28" stroke="rgba(255,255,255,0.45)" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Ruedas cerradas limpias -->
+              <circle cx="88"  cy="122" r="20" fill="#030712"/>
+              <circle cx="88"  cy="122" r="13" fill="#1e3a5f"/>
+              <circle cx="88"  cy="122" r="5"  fill="#3b82f6"/>
+              <line x1="88" y1="102" x2="88" y2="142" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+              <line x1="68" y1="122" x2="108" y2="122" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="218" cy="122" r="20" fill="#030712"/>
+              <circle cx="218" cy="122" r="13" fill="#1e3a5f"/>
+              <circle cx="218" cy="122" r="5"  fill="#3b82f6"/>
+              <line x1="218" y1="102" x2="218" y2="142" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+              <line x1="198" y1="122" x2="238" y2="122" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <img class="ba-photo" alt="Foto después">
+            <label class="ba-upload">
+              <svg viewBox="0 0 24 24"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16"/><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+              Subir foto
+              <input type="file" accept="image/*" class="ba-file-input">
+            </label>
+            <button type="button" class="ba-remove" aria-label="Quitar foto">
+              <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <span class="ba-pill after-pill">Después</span>
+          </div>
+          <div class="ba-divider">
+            <div class="ba-div-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M8 12h8M5 9l-3 3 3 3M19 9l3 3-3 3"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="ba-info">
+          <div><strong>SUV doble cabina</strong><span>Lavado completo de motor</span></div>
+          <em>Completado</em>
+        </div>
+      </div>
+
+      <!-- Pickup -->
+      <div class="ba-card">
+        <div class="ba-visual">
+          <div class="ba-panel ba-before">
+            <svg viewBox="0 0 310 135" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="155" cy="128" rx="130" ry="8" fill="rgba(0,0,0,0.25)"/>
+              <!-- Cabina sucia -->
+              <rect x="16"  y="54" width="160" height="60" rx="10" fill="#4a3820"/>
+              <!-- Techo cabina cerrado -->
+              <path d="M38 54 Q48 14 140 12 Q168 16 172 54 Z" fill="#382a14"/>
+              <!-- Ventana cabina CERRADA -->
+              <path d="M44 54 Q46 22 80 16 L115 16 L115 54 Z" fill="#8090a0" opacity="0.4"/>
+              <rect x="113" y="16" width="8" height="38" rx="2" fill="#382a14"/>
+              <path d="M121 54 L121 14 L162 16 L162 54 Z" fill="#9aaabb" opacity="0.38"/>
+              <!-- Cama trasera cerrada -->
+              <rect x="176" y="44" width="118" height="70" rx="8" fill="#3a2a10"/>
+              <!-- Compuerta trasera -->
+              <rect x="280" y="44" width="14" height="70" rx="4" fill="#2a1e08"/>
+              <!-- Líneas de la cama -->
+              <line x1="176" y1="58" x2="294" y2="58" stroke="#2a1e08" stroke-width="1.5"/>
+              <!-- Mugre -->
+              <rect x="16"  y="54" width="160" height="60" rx="10" fill="rgba(45,22,0,0.48)"/>
+              <rect x="176" y="44" width="118" height="70" rx="8"  fill="rgba(45,22,0,0.35)"/>
+              <!-- Ruedas cerradas -->
+              <circle cx="80"  cy="120" r="19" fill="#111"/>
+              <circle cx="80"  cy="120" r="12" fill="#1e293b"/>
+              <circle cx="80"  cy="120" r="5"  fill="#334155"/>
+              <line x1="80" y1="101" x2="80" y2="139" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+              <line x1="61" y1="120" x2="99" y2="120" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="235" cy="120" r="19" fill="#111"/>
+              <circle cx="235" cy="120" r="12" fill="#1e293b"/>
+              <circle cx="235" cy="120" r="5"  fill="#334155"/>
+              <line x1="235" y1="101" x2="235" y2="139" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+              <line x1="216" y1="120" x2="254" y2="120" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <img class="ba-photo" alt="Foto antes">
+            <label class="ba-upload">
+              <svg viewBox="0 0 24 24"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16"/><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+              Subir foto
+              <input type="file" accept="image/*" class="ba-file-input">
+            </label>
+            <button type="button" class="ba-remove" aria-label="Quitar foto">
+              <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <span class="ba-pill">Antes</span>
+          </div>
+          <div class="ba-panel ba-after">
+            <svg viewBox="0 0 310 135" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="155" cy="128" rx="130" ry="8" fill="rgba(37,99,235,0.2)"/>
+              <!-- Cabina limpia -->
+              <rect x="16"  y="54" width="160" height="60" rx="10" fill="#1e3a5f"/>
+              <path d="M38 54 Q48 14 140 12 Q168 16 172 54 Z" fill="#162e4a"/>
+              <!-- Ventana cabina CERRADA limpia -->
+              <path d="M44 54 Q46 22 80 16 L115 16 L115 54 Z" fill="#93c5fd" opacity="0.35"/>
+              <rect x="113" y="16" width="8" height="38" rx="2" fill="#162e4a"/>
+              <path d="M121 54 L121 14 L162 16 L162 54 Z" fill="#bae6fd" opacity="0.3"/>
+              <!-- Cama trasera limpia -->
+              <rect x="176" y="44" width="118" height="70" rx="8" fill="#162e4a"/>
+              <rect x="280" y="44" width="14" height="70" rx="4" fill="#0f1e38"/>
+              <line x1="176" y1="58" x2="294" y2="58" stroke="#1e3a5f" stroke-width="1.5"/>
+              <!-- Brillo -->
+              <ellipse cx="90" cy="64" rx="60" ry="8" fill="rgba(255,255,255,0.1)"/>
+              <line x1="54" y1="40" x2="72" y2="26" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round"/>
+              <!-- Ruedas cerradas limpias -->
+              <circle cx="80"  cy="120" r="19" fill="#030712"/>
+              <circle cx="80"  cy="120" r="12" fill="#1e3a5f"/>
+              <circle cx="80"  cy="120" r="5"  fill="#3b82f6"/>
+              <line x1="80" y1="101" x2="80" y2="139" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+              <line x1="61" y1="120" x2="99" y2="120" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="235" cy="120" r="19" fill="#030712"/>
+              <circle cx="235" cy="120" r="12" fill="#1e3a5f"/>
+              <circle cx="235" cy="120" r="5"  fill="#3b82f6"/>
+              <line x1="235" y1="101" x2="235" y2="139" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+              <line x1="216" y1="120" x2="254" y2="120" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <img class="ba-photo" alt="Foto después">
+            <label class="ba-upload">
+              <svg viewBox="0 0 24 24"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16"/><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+              Subir foto
+              <input type="file" accept="image/*" class="ba-file-input">
+            </label>
+            <button type="button" class="ba-remove" aria-label="Quitar foto">
+              <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <span class="ba-pill after-pill">Después</span>
+          </div>
+          <div class="ba-divider">
+            <div class="ba-div-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M8 12h8M5 9l-3 3 3 3M19 9l3 3-3 3"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="ba-info">
+          <div><strong>Pick-up doble cabina</strong><span>Restauración de luces + motor</span></div>
+          <em>Completado</em>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     UBICACIÓN
+════════════════════════════════════════════ -->
+<section id="ubicacion">
+  <div class="container">
+    <div class="sec-head">
+      <p class="eyebrow">Visítanos</p>
+      <h2>Nuestra Ubicación</h2>
+      <p class="sub">Encuéntranos fácilmente. Estamos listos para recibir tu vehículo.</p>
+    </div>
+
+    <div class="map-wrap">
+
+      <!-- Tarjeta de información -->
+      <div class="map-info">
+        <div class="map-info-item">
+          <div class="map-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Dirección</strong>
+            <span>Los frailes 1 santo domingo este los frailes 1 calle brisas del mar #44</span>
+          </div>
+        </div>
+
+        <div class="map-info-item">
+          <div class="map-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Horario</strong>
+            <span>Agendamos citas todos los días de la semana y las 24 horas del día.</span>
+          </div>
+        </div>
+
+        <div class="map-info-item">
+          <div class="map-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Teléfono / WhatsApp</strong>
+            <span>849-285-3440 / 809-499-7692</span>
+          </div>
+        </div>
+
+        <a href="https://www.google.com/maps/place/RESIDENCIAL+BRISAS+DEL+MAR+1/@18.4701919,-69.8209619,17z/data=!3m1!4b1!4m6!3m5!1s0x8eaf87c12f955993:0x63da95ca3e8f410b!8m2!3d18.4701868!4d-69.8183816!16s%2Fg%2F11spswy08s?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D"
+           class="map-cta" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11l19-9-9 19-2-8-8-2z"/>
+          </svg>
+          Cómo llegar
+        </a>
+      </div>
+
+      <!-- Mapa embebido -->
+      <div class="map-frame">
+        <iframe
+          src="https://maps.google.com/maps?q=Santo%20Domingo%2C%20Rep%C3%BAblica%20Dominicana&t=&z=14&ie=UTF8&iwloc=&output=embed"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación JS.Jesus Car Wash">
+        </iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     CONTACTO
+════════════════════════════════════════════ -->
+<section id="contacto">
+  <div class="container">
+    <div class="contact-wrap">
+
+      <div class="contact-left">
+        <p class="eyebrow">Hablemos</p>
+        <h2>¿Listo para que<br>tu carro <em>brille?</em></h2>
+        <p>Escríbenos por WhatsApp para tu turno o síguenos en redes para ver trabajos y promos de la semana.</p>
+        <div class="contact-links">
+
+          <a href="https://wa.me/18091234567" class="clink clink-wa" target="_blank" rel="noopener">
+            <div class="clink-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div class="clink-text"><span>Escríbenos directo</span><strong>WhatsApp</strong></div>
+          </a>
+
+          <a href="https://facebook.com/" class="clink clink-fb" target="_blank" rel="noopener">
+            <div class="clink-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </div>
+            <div class="clink-text"><span>Síguenos en</span><strong>Facebook</strong></div>
+          </a>
+
+          <a href="https://instagram.com/" class="clink clink-ig" target="_blank" rel="noopener">
+            <div class="clink-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </div>
+            <div class="clink-text"><span>Nuestros trabajos en</span><strong>Instagram</strong></div>
+          </a>
+
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Llevé mi carro hecho un desastre y lo recibí como si fuera nuevo. El nivel de detalle que le ponen es impresionante. Ya no lo llevo a otro lado."</blockquote>
+          <cite><strong>Carlos Mena</strong>Cliente desde 2025 · Santiago</cite>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="foot-logo">JS.<em>Jesus</em></div>
+  <p>Santo Domingo, República Dominicana · © 2026 JS.Jesus Car Wash</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
